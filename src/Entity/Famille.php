@@ -28,6 +28,16 @@ class Famille
      */
     private $libelle;
 
+    /**
+     * @var \Medicament
+     *
+     * @ORM\OneToMany(targetEntity="Medicament", mappedBy="idfamille")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id", referencedColumnName="idCategorie")
+     * })
+     */
+    private $produits;
+
     public function getId(): ?string
     {
         return $this->id;

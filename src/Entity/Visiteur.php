@@ -17,7 +17,7 @@ class Visiteur
      *
      * @ORM\Column(name="id", type="string", length=4, nullable=false, options={"fixed"=true})
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $id;
 

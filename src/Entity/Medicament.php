@@ -19,7 +19,7 @@ class Medicament
      *
      * @ORM\Column(name="id", type="string", length=30, nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $id;
 
@@ -54,7 +54,7 @@ class Medicament
     /**
      * @var \Famille
      *
-     * @ORM\ManyToOne(targetEntity="Famille")
+     * @ORM\ManyToOne(targetEntity="Famille", inversedBy="familles")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idFamille", referencedColumnName="id")
      * })
