@@ -36,7 +36,7 @@ class Famille
      *   @ORM\JoinColumn(name="id", referencedColumnName="idCategorie")
      * })
      */
-    private $produits;
+    private $medicaments;
 
     public function getId(): ?string
     {
