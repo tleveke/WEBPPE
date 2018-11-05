@@ -22,6 +22,7 @@ class RapportController extends AbstractController
         $rapports = $this->getDoctrine()
             ->getRepository(Rapport::class)
             ->findBy(['idvisiteur' => 'b16']);
+        //Autre form pour le formulaire
 
         return $this->render('rapport/index.html.twig', ['rapports' => $rapports]);
     }
