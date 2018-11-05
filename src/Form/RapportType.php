@@ -2,10 +2,16 @@
 
 namespace App\Form;
 
+use App\Entity\Medecin;
+use App\Entity\Medicament;
+use App\Entity\Visiteur;
+
 use App\Entity\Rapport;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class RapportType extends AbstractType
 {
@@ -15,9 +21,21 @@ class RapportType extends AbstractType
             ->add('date')
             ->add('motif')
             ->add('bilan')
-            ->add('idvisiteur')
-            ->add('idmedecin')
-            ->add('idmedicament')
+            ->add('idvisiteur', EntityType::class, array(
+                'class' => Visiteur::class,
+                'choice_label' => 'nom',
+                'label' => 'Nom du Visiteur',
+            ))
+            ->add('idmedecin', EntityType::class, array(
+                'class' => Medecin::class,
+                'choice_label' => 'nom',
+                'label' => 'Nom du medecin',
+            ))
+            ->add('idmedicament', EntityType::class, array(
+                'class' => Medicament::class,
+                'choice_label' => 'nomcommercial',
+                'label' => 'Nom du medicament',
+            ))
         ;
     }
 
