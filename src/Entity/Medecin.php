@@ -63,6 +63,16 @@ class Medecin
      */
     private $departement;
 
+    /**
+     * @var \Rapport
+     *
+     * @ORM\OneToMany(targetEntity="Rapport", mappedBy="idmedecin")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id", referencedColumnName="idMedecin")
+     * })
+     */
+    private $rapports;
+
     public function getId(): ?int
     {
         return $this->id;

@@ -33,7 +33,7 @@ class Famille
      *
      * @ORM\OneToMany(targetEntity="Medicament", mappedBy="idfamille")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id", referencedColumnName="idCategorie")
+     *   @ORM\JoinColumn(name="id", referencedColumnName="idFamille")
      * })
      */
     private $medicaments;

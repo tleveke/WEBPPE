@@ -77,6 +77,16 @@ class Visiteur
      */
     private $dateembauche;
 
+    /**
+     * @var \Rapport
+     *
+     * @ORM\OneToMany(targetEntity="Rapport", mappedBy="idvisiteur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id", referencedColumnName="idVisiteur")
+     * })
+     */
+    private $rapports;
+
     public function getId(): ?string
     {
         return $this->id;
