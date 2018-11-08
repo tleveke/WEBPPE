@@ -10,7 +10,7 @@ use App\Entity\Rapport;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class RapportType extends AbstractType
@@ -19,7 +19,14 @@ class RapportType extends AbstractType
     {
         $builder
             ->add('date')
-            ->add('motif')
+            ->add('motif',  ChoiceType::class, array(
+                'choices'  => array(
+                    'visite annuelle' => 'visite annuelle',
+                    'nouveauté' => 'nouveauté',
+                    'demande du médecin' => 'demande du médecin',
+                    'autre' => 'autre',
+                ),
+            ))
             ->add('bilan')
             ->add('idvisiteur', EntityType::class, array(
                 'class' => Visiteur::class,
