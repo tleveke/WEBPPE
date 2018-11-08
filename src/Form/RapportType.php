@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class RapportType extends AbstractType
 {
@@ -27,7 +28,9 @@ class RapportType extends AbstractType
                     'autre' => 'autre',
                 ),
             ))
-            ->add('bilan')
+            ->add('bilan', TextareaType::class, array(
+                'attr' => array('class' => 'tinymce'),
+            ))
             ->add('idvisiteur', EntityType::class, array(
                 'class' => Visiteur::class,
                 'choice_label' => 'nom',
