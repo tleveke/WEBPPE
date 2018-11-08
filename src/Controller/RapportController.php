@@ -3,7 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Rapport;
+use App\Entity\Search;
+
 use App\Form\RapportType;
+use App\Form\SearchType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,8 +27,13 @@ class RapportController extends AbstractController
             ->getRepository(Rapport::class)
             ->findBy(['idvisiteur' => 'b16']);
         //Autre form pour le formulaire
+        $search = new Search;
+        $searchform = $this->createForm(SearchType::class);
 
-        return $this->render('rapport/index.html.twig', ['rapports' => $rapports]);
+        return $this->render('rapport/index.html.twig', [
+            'rapports' => $rapports,
+            'search' => $searchform->createView(),
+        ]);
     }
 
     /**

@@ -9,6 +9,20 @@
     <a href="{{ path('rapport_new') }}" class="btn btn-info" role="button">Nouveau produit</a>
     <br><br>
 
+    {{ form_start(search) }}
+    <div class='row'>
+        <div class="col-sm-4">
+            {{ form_row(search.date) }}
+        </div>
+        <div class="col-sm-4">
+            {{ form_row(search.choixTri) }}
+        </div>
+        <div class="col-sm-4">
+            <button class="btn">{{ button_label|default('Rechercher') }}</button>
+        </div>
+    </div>
+    {{ form_end(search) }}
+
     <table class="table">
         <thead>
             <tr>

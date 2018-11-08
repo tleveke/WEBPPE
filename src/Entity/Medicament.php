@@ -65,6 +65,7 @@ class Medicament
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Rapport", mappedBy="idmedicament")
+     * @ORM\JoinTable(name="offrir")
      */
     private $idrapport;
 

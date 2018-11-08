@@ -5,11 +5,12 @@ namespace App\Form;
 use App\Entity\Medecin;
 use App\Entity\Medicament;
 use App\Entity\Visiteur;
-
 use App\Entity\Rapport;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityRepository;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
