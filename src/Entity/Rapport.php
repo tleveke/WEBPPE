@@ -67,13 +67,13 @@ class Rapport
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Medicament", inversedBy="idrapport")
+     * @ORM\ManyToMany(targetEntity="Medicament", inversedBy="idrapport" , cascade={"persist"})
      * @ORM\JoinTable(name="offrir",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="idRapport", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="idRapport", referencedColumnName="rapport")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idMedicament", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="idMedicament", referencedColumnName="medicament")
      *   }
      * )
      */
