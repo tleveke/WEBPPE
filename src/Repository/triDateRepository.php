@@ -12,12 +12,18 @@ class triDateRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Rapport::class);
     }
-    public function OrderedByDate()
+    public function finAllOrderedByDate()
     {
-        $queryBuilder = $this->createQueryBuilder('r')
-            ->orderBy('r.date','DESC')
+        $queryBuilder = $this->createQueryBuilder('rapport')
+            ->orderBy('rapport.date','DESC')
             ->getQuery();
         return $queryBuilder->getResult();
+    }
+    public function listAction()
+    {
+        $products = $this->getDoctrine()
+            ->getRepository(Rapport::class)
+            ->finAllOrderedByDate();
     }
 }
 ?>
