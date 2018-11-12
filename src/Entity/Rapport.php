@@ -65,19 +65,11 @@ class Rapport
     private $idmedecin;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var \Offrir
      *
-     * @ORM\ManyToMany(targetEntity="Medicament", inversedBy="idrapport")
-     * @ORM\JoinTable(name="offrir",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idRapport", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idMedicament", referencedColumnName="id")
-     *   }
-     * )
+     * @ORM\OneToMany(targetEntity="Offrir", mappedBy="rapport")
      */
-    private $idmedicament;
+    private $offrirs;
 
     /**
      * Constructor

@@ -14,6 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class RapportType extends AbstractType
 {
@@ -41,16 +42,6 @@ class RapportType extends AbstractType
                 'class' => Medecin::class,
                 'choice_label' => 'nom',
                 'label' => 'Nom du medecin',
-            ))
-            ->add('idmedicament', EntityType::class, array(
-                'class' => Medicament::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('medicament')
-                        ->orderBy('medicament.nomcommercial', 'ASC');
-                },
-                'choice_label' => 'nomcommercial',
-                'label' => 'Nom du medicament',
-
             ))
         ;
     }

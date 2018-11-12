@@ -1,4 +1,12 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(formOffrir)}}
+
+{{ form_widget(form) }}
+
+{{ form_row(formOffrir.medicament)}}
+{{ form_row(formOffrir.quantite)}}
+
+<button class="btn">{{ button_label|default('Save') }}</button>
+
+{{ form_end(formOffrir) }}
 {{ form_end(form) }}
