@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 * @ORM\Entity
 * @ORM\Table(name="offrir",
 *    uniqueConstraints={
-*        @ORM\UniqueConstraint(name="user_poll_unique", columns={"IdRapport", "IdMedicament"})
+*        @ORM\UniqueConstraint(name="user_poll_unique", columns={"idRapport", "idMedicament"})
 *    }
 *  )
 */
@@ -17,7 +17,7 @@ class Offrir
     /**
     * @var \Rapport 
     * @ORM\Id
-    * @ORM\ManyToOne(targetEntity=Rapport::class)
+    * @ORM\ManyToOne(targetEntity=Rapport::class, inversedBy="offrirs")
     * @ORM\JoinColumns({
     *   @ORM\JoinColumn(name="idRapport", referencedColumnName="id")
     * })
@@ -65,7 +65,7 @@ class Offrir
     }
     
     
-    public function getQuantite(): ?string
+    public function getQuantite(): ?int
     {
         return $this->quantite;
     }

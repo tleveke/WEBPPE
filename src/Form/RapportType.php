@@ -43,17 +43,6 @@ class RapportType extends AbstractType
                 'choice_label' => 'nom',
                 'label' => 'Nom du medecin',
             ))
-            ->add('idmedicament', EntityType::class, array(
-                'class' => Medicament::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('medicament')
-                        ->orderBy('medicament.nomcommercial', 'ASC');
-                },
-                'mapped' => false, 
-                'choice_label' => 'nomcommercial',
-                'label' => 'Nom du medicament',
-
-            ))
         ;
     }
 

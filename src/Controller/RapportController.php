@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Rapport;
 use App\Entity\Search;
+use App\Entity\Offrir;
 
 use App\Form\RapportType;
 use App\Form\SearchType;
+use App\Form\OffrirType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,9 +47,17 @@ class RapportController extends AbstractController
         $form = $this->createForm(RapportType::class, $rapport);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $offrir = new Offrir();
+        $formOffrir = $this->createForm(OffrirType::class, $offrir);
+        $formOffrir->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid() && $formOffrir->isSubmitted() && $formOffrir->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($rapport);
+            $em->flush();
+
+            $offrir->setRapport($rapport);
+            $em->persist($offrir);
             $em->flush();
 
             return $this->redirectToRoute('rapport_index');
@@ -56,6 +66,7 @@ class RapportController extends AbstractController
         return $this->render('rapport/new.html.twig', [
             'rapport' => $rapport,
             'form' => $form->createView(),
+            'formOffrir' => $formOffrir->createView(),
         ]);
     }
 
