@@ -2,9 +2,7 @@
 {{ form_start(formOffrir)}}
 
 {{ form_widget(form) }}
-
-{{ form_row(formOffrir.medicament)}}
-{{ form_row(formOffrir.quantite)}}
+{{ form_widget(formOffrir) }}
 
 <button class="btn">{{ button_label|default('Save') }}</button>
 

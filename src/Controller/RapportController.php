@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Rapport;
 use App\Entity\Search;
 use App\Entity\Offrir;
+use App\Entity\Visiteur;
 
 use App\Form\RapportType;
 use App\Form\SearchType;
@@ -28,12 +29,16 @@ class RapportController extends AbstractController
         $rapports = $this->getDoctrine()
             ->getRepository(Rapport::class)
             ->findBy(['idvisiteur' => 'b16']);
-        //Autre form pour le formulaire
+        $visiteur = $this->getDoctrine()
+            ->getRepository(Visiteur::class)
+            ->findOneBy(['id' => 'b16']);
+
         $search = new Search;
         $searchform = $this->createForm(SearchType::class);
 
         return $this->render('rapport/index.html.twig', [
             'rapports' => $rapports,
+            'nomvisiteur' => $visiteur->getNom(),
             'search' => $searchform->createView(),
         ]);
     }
@@ -86,6 +91,12 @@ class RapportController extends AbstractController
         $form = $this->createForm(RapportType::class, $rapport);
         $form->handleRequest($request);
 
+        $repository = $this->getDoctrine()->getRepository(Offrir::class);
+        $offrir = $repository->findOneBy(['rapport' => $rapport]);
+
+        $formOffrir = $this->createForm(OffrirType::class, $offrir);
+        $formOffrir->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -95,6 +106,7 @@ class RapportController extends AbstractController
         return $this->render('rapport/edit.html.twig', [
             'rapport' => $rapport,
             'form' => $form->createView(),
+            'formOffrir' => $formOffrir->createView(),
         ]);
     }
 

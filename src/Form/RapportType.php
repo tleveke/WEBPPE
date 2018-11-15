@@ -15,13 +15,16 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class RapportType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date')
+            ->add('date',DateType::class, array(
+                'widget' => 'choice',
+            ))
             ->add('motif',  ChoiceType::class, array(
                 'choices'  => array(
                     'visite annuelle' => 'visite annuelle',
