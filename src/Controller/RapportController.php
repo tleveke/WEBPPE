@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RapportController extends AbstractController
 {
     /**
-     * @Route("/", name="rapport_index", methods="GET")
+     * @Route("/", name="rapport_index", methods="GET|POST")
      */
     public function index(): Response
     {
