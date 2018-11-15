@@ -76,7 +76,7 @@ class Rapport
      */
     public function __construct()
     {
-        $this->idmedicament = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->offrirs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,26 +145,26 @@ class Rapport
     }
 
     /**
-     * @return Collection|Medicament[]
+     * @return Collection|Offrir[]
      */
-    public function getIdmedicament(): Collection
+    public function getOffrirs(): Collection
     {
-        return $this->idmedicament;
+        return $this->offrirs;
     }
 
-    public function addIdmedicament(Medicament $idmedicament): self
+    public function addOffrirs(Offrir $offrirs): self
     {
-        if (!$this->idmedicament->contains($idmedicament)) {
-            $this->idmedicament[] = $idmedicament;
+        if (!$this->offrirs->contains($offrirs)) {
+            $this->offrirs[] = $offrirs;
         }
 
         return $this;
     }
 
-    public function removeIdmedicament(Medicament $idmedicament): self
+    public function removeOffrirs(Offrir $offrirs): self
     {
-        if ($this->idmedicament->contains($idmedicament)) {
-            $this->idmedicament->removeElement($idmedicament);
+        if ($this->offrirs->contains($offrirs)) {
+            $this->offrirs->removeElement($offrirs);
         }
 
         return $this;

@@ -23,6 +23,14 @@
                 <th>Bilan</th>
                 <td>{{ rapport.bilan }}</td>
             </tr>
+            <tr>
+                <th>Nom du médecin</th>
+                <td>{{ rapport.idmedecin.prenom }} {{ rapport.idmedecin.nom }}</td>
+            </tr>
+            {# <tr>
+                <th>Echantillon offert</th>
+                <td>Medicament = {{ rapport.offrirs.medicament.nomcommercial }}, nb = {{rapport.offrirs.quantite}} </td>
+            </tr> #}
         </tbody>
     </table>
 

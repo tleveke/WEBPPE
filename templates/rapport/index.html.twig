@@ -26,20 +26,22 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Motif</th>
-                <th>Bilan</th>
+                <th>Le numéro du rapport</th>
+                <th>Date du rapport</th>
+                <th>Motif du rapport</th>
+                <th>Bilan du rapport</th>
+                <th>Nom du medecin</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for rapport in rapports %}
             <tr>
-                <td>{{ rapport.id }}</td>
+                <td>N°{{ rapport.id }}</td>
                 <td>{{ rapport.date ? rapport.date|date('Y-m-d') : '' }}</td>
                 <td>{{ rapport.motif }}</td>
                 <td>{{ rapport.bilan }}</td>
+                <td>{{ rapport.idmedecin.prenom }} {{ rapport.idmedecin.nom }}</td>
                 <td>
                     <a href="{{ path('rapport_show', {'id': rapport.id}) }}">show</a>
                     <a href="{{ path('rapport_edit', {'id': rapport.id}) }}">edit</a>
