@@ -22,6 +22,10 @@ class OffrirType extends AbstractType
         $builder
             ->add('medicament', EntityType::class, array(
                 'class' => Medicament::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.nomcommercial', 'ASC');
+                },
                 'choice_label' => 'nomcommercial',
                 'label' => 'Nom du medicament',
 

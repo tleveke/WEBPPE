@@ -40,11 +40,19 @@ class RapportType extends AbstractType
             ))
             ->add('idvisiteur', EntityType::class, array(
                 'class' => Visiteur::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.nom', 'ASC');
+                },
                 'choice_label' => 'nom',
                 'label' => 'Nom du Visiteur',
             ))
             ->add('idmedecin', EntityType::class, array(
                 'class' => Medecin::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.nom', 'ASC');
+                },
                 'choice_label' => 'nom',
                 'label' => 'Nom du medecin',
             ))
