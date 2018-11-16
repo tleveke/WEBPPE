@@ -6,7 +6,7 @@
     <h1>Rapports du visiteur {{ nomvisiteur }}</h1>
     
     <br><br>
-    <a href="{{ path('rapport_new') }}" class="btn btn-info" role="button">Nouveau produit</a>
+    <a href="{{ path('rapport_new') }}" class="btn btn-info" role="button">Nouveau Rapport</a>
     <br><br>
 
     {{ form_start(search) }}
@@ -27,7 +27,6 @@
     <table class="table" id="Table01">
         <thead>
             <tr>
-                <th>Le numéro du rapport</th>
                 <th>Date du rapport</th>
                 <th>Motif du rapport</th>
                 <th>Bilan du rapport</th>
@@ -38,8 +37,7 @@
         <tbody>
         {% for rapport in rapports %}
             <tr>
-                <td>N°{{ rapport.id }}</td>
-                <td>{{ rapport.date ? rapport.date|date('Y-m-d') : '' }}</td>
+                <td>{{ rapport.date ? rapport.date|date('d-m-y') : '' }}</td>
                 <td>{{ rapport.motif }}</td>
                 <td>{{ rapport.bilan }}</td>
                 <td>{{ rapport.idmedecin.prenom }} {{ rapport.idmedecin.nom }}</td>

@@ -25,6 +25,7 @@ class RapportType extends AbstractType
         $builder
             ->add('date',DateType::class, array(
                 'widget' => 'choice',
+                'format' => 'dd-MM-yyyy',
                 'label' => 'Saisir la date',
             ))
             ->add('motif',  ChoiceType::class, array(
@@ -44,20 +45,24 @@ class RapportType extends AbstractType
             ))
             ->add('idvisiteur', EntityType::class, array(
                 'class' => Visiteur::class,
+                'choice_label' => function ($visiteur) {
+                    return $visiteur->getPrenomNom();
+                },
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.nom', 'ASC');
                 },
-                'choice_label' => 'nom',
                 'label' => 'Nom du Visiteur',
             ))
             ->add('idmedecin', EntityType::class, array(
                 'class' => Medecin::class,
+                'choice_label' => function ($medecin) {
+                    return $medecin->getPrenomNom();
+                },
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.nom', 'ASC');
                 },
-                'choice_label' => 'nom',
                 'label' => 'Nom du medecin',
             ))
             ->add('offrirs', CollectionType::class, [

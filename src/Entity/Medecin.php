@@ -92,6 +92,12 @@ class Medecin
         return $this;
     }
 
+    public function getPrenomNom(): ?string
+    {
+        $ret = $this->getNom(). " " .$this->getPrenom();
+        return $ret;
+    }
+
     public function getAdresse(): ?string
     {
         return $this->adresse;

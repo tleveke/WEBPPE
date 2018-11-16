@@ -116,6 +116,12 @@ class Visiteur
         return $this;
     }
 
+    public function getPrenomNom(): ?string
+    {
+        $ret = $this->getNom(). " " .$this->getPrenom();
+        return $ret;
+    }
+
     public function getLogin(): ?string
     {
         return $this->login;
