@@ -1,10 +1,27 @@
 {{ form_start(form) }}
-{{ form_start(formOffrir)}}
 
-{{ form_widget(form) }}
-{{ form_widget(formOffrir) }}
-<!--<a href="#div">ajouter un échantillon offert</a>-->
+{{ form_row(form.date) }}
+{{ form_row(form.motif) }}
+{{ form_row(form.bilan) }}
+{{ form_row(form.idvisiteur) }}
+{{ form_row(form.idmedecin) }}
+{# render each row and field in the embedded form, in this example it's rendering the experience (Exp) fiels as rows #}
+<div id="offrir_list" data-prototype="{{ form_widget(form.offrirs.vars.prototype)|e('html_attr') }}">
+    {% for row in form.offrirs %}
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <strong>{{ row.vars.value.medicament.nomcommercial }}</strong>
+            </div>
+            <div class="panel-body">
+                {{ form_row(row) }}
+            </div>
+        </div>
+    {% else %}
+        {{ form_row(form.offrirs) }}
+        <p>Le rapport n'a pas d'échantillon</p>
+    {% endfor %}
+</div>
+
 <button class="btn">{{ button_label|default('Save') }}</button>
 
-{{ form_end(formOffrir) }}
 {{ form_end(form) }}

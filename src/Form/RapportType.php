@@ -16,6 +16,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class RapportType extends AbstractType
 {
@@ -24,6 +25,7 @@ class RapportType extends AbstractType
         $builder
             ->add('date',DateType::class, array(
                 'widget' => 'choice',
+                'label' => 'Saisir la date',
             ))
             ->add('motif',  ChoiceType::class, array(
                 'choices'  => array(
@@ -46,6 +48,18 @@ class RapportType extends AbstractType
                 'choice_label' => 'nom',
                 'label' => 'Nom du medecin',
             ))
+            ->add('offrirs', CollectionType::class, [
+                'entry_type' => OffrirType::class,
+                'entry_options' => [
+                    'label' => false
+                ],
+                'by_reference' => false,
+                // this allows the creation of new forms and the prototype too
+                'allow_add' => true,
+                // self explanatory, this one allows the form to be removed
+                'allow_delete' => true,
+                'label' => 'La liste des échantillon'
+            ])
         ;
     }
 
