@@ -6,18 +6,23 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
 * @ORM\Entity
-* @ORM\Table(name="offrir",
-*    uniqueConstraints={
-*        @ORM\UniqueConstraint(name="user_poll_unique", columns={"idRapport", "idMedicament"})
-*    }
-*  )
+* @ORM\Table(name="offrir")
 */
 class Offrir
 {
+
     /**
-    * @var \Rapport 
-    * @ORM\Id
-    * @ORM\ManyToOne(targetEntity=Rapport::class, inversedBy="offrirs")
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+    * @var \Rapport
+    * @ORM\ManyToOne(targetEntity="Rapport", inversedBy="offrirs")
     * @ORM\JoinColumns({
     *   @ORM\JoinColumn(name="idRapport", referencedColumnName="id")
     * })
@@ -26,8 +31,7 @@ class Offrir
 
     /**
     * @var \Medicament
-    * @ORM\Id
-    * @ORM\ManyToOne(targetEntity=Medicament::class)
+    * @ORM\ManyToOne(targetEntity="Medicament")
     * @ORM\JoinColumns({
     *   @ORM\JoinColumn(name="idMedicament", referencedColumnName="id")
     * })
