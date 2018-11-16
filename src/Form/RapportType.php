@@ -32,6 +32,10 @@ class RapportType extends AbstractType
                     'visite annuelle' => 'visite annuelle',
                     'nouveauté' => 'nouveauté',
                     'demande du médecin' => 'demande du médecin',
+                    'installation nouvelle' => 'installation nouvelle',
+                    'installation récente' => 'installation récente',
+                    'recommandation de confrère' => 'recommandation de confrère',
+                    'prise de contact' => 'prise de contact',
                     'autre' => 'autre',
                 ),
             ))
