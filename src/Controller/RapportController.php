@@ -11,6 +11,8 @@ use App\Form\RapportType;
 use App\Form\SearchType;
 use App\Form\OffrirType;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,20 +51,16 @@ class RapportController extends AbstractController
     public function new(Request $request): Response
     {
         $rapport = new Rapport();
+        foreach ($rapport->getOffrirs() as $offrir) {
+            $orignalOffrirs->add($offrir);
+        }
         $form = $this->createForm(RapportType::class, $rapport);
         $form->handleRequest($request);
 
-        $offrir = new Offrir();
-        $formOffrir = $this->createForm(OffrirType::class, $offrir);
-        $formOffrir->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        if ($form->isSubmitted() && $form->isValid() && $formOffrir->isSubmitted() && $formOffrir->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($rapport);
-            $em->flush();
-
-            $offrir->setRapport($rapport);
-            $em->persist($offrir);
             $em->flush();
 
             return $this->redirectToRoute('rapport_index');
@@ -71,7 +69,6 @@ class RapportController extends AbstractController
         return $this->render('rapport/new.html.twig', [
             'rapport' => $rapport,
             'form' => $form->createView(),
-            'formOffrir' => $formOffrir->createView(),
         ]);
     }
 
@@ -88,16 +85,25 @@ class RapportController extends AbstractController
      */
     public function edit(Request $request, Rapport $rapport): Response
     {
+        $orignalOffrirs = new ArrayCollection();
+        foreach ($rapport->getOffrirs() as $offrir) {
+            $orignalOffrirs->add($offrir);
+        }
+
         $form = $this->createForm(RapportType::class, $rapport);
         $form->handleRequest($request);
 
-        $repository = $this->getDoctrine()->getRepository(Offrir::class);
-        $offrir = $repository->findOneBy(['rapport' => $rapport]);
-
-        $formOffrir = $this->createForm(OffrirType::class, $offrir);
-        $formOffrir->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $em = $this->getDoctrine()->getManager();
+
+            foreach ($orignalOffrirs as $offrir) {
+                 // check if the exp is in the $user->getExp()
+                //dump($user->getExp()->contains($exp));
+                if ($rapport->getOffrirs()->contains($offrir) === false) {
+                    $em->remove($offrir);
+                }
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('rapport_edit', ['id' => $rapport->getId()]);
@@ -106,7 +112,6 @@ class RapportController extends AbstractController
         return $this->render('rapport/edit.html.twig', [
             'rapport' => $rapport,
             'form' => $form->createView(),
-            'formOffrir' => $formOffrir->createView(),
         ]);
     }
 

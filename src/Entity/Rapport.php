@@ -65,9 +65,9 @@ class Rapport
     private $idmedecin;
 
     /**
-     * @var \Offrir
-     *
-     * @ORM\OneToMany(targetEntity="Offrir", mappedBy="rapport")
+     * @var Collection
+     * 
+     * @ORM\OneToMany(targetEntity="Offrir", mappedBy="rapport", cascade={"persist"})
      */
     private $offrirs;
 
@@ -152,16 +152,17 @@ class Rapport
         return $this->offrirs;
     }
 
-    public function addOffrirs(Offrir $offrirs): self
+    public function addOffrir(Offrir $offrirs): self
     {
         if (!$this->offrirs->contains($offrirs)) {
             $this->offrirs[] = $offrirs;
+            $offrirs->setRapport($this);
         }
 
         return $this;
     }
 
-    public function removeOffrirs(Offrir $offrirs): self
+    public function removeOffrir(Offrir $offrirs): self
     {
         if ($this->offrirs->contains($offrirs)) {
             $this->offrirs->removeElement($offrirs);
