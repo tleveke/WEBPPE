@@ -73,7 +73,7 @@ function addRemoveButton ($panel) {
         e.preventDefault();
         // gets the parent of the button that we clicked on "the panel" and animates it
         // after the animation is done the element (the panel) is removed from the html
-        $(e.target).parents('.panel').slideUp(1000, function () {
+        $(e.target).parents('.panel').slideUp(500, function () {
             $(this).remove();
         })
     });
