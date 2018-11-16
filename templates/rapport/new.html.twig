@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Rapport{% endblock %}
+{% block title %}Nouveau rapport{% endblock %}
 
 {% block body %}
-    <h1>Create new Rapport</h1>
+    <h1>Créer un nouveau rapport</h1>
 
     {{ include('rapport/_form.html.twig') }}
 
-    <a href="{{ path('rapport_index') }}">back to list</a>
+    <a href="{{ path('rapport_index') }}">Retourner à la liste</a>
 {% endblock %}

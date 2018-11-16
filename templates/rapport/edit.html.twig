@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Rapport{% endblock %}
+{% block title %}Modifier le rapport{% endblock %}
 
 {% block body %}
-    <h1>Edit Rapport</h1>
+    <h1>Modifier le rapport</h1>
 
-    {{ include('rapport/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('rapport/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 
-    <a href="{{ path('rapport_index') }}">back to list</a>
+    <br>
+
+    <a href="{{ path('rapport_index') }}">Retourner à la liste</a>
 
     {{ include('rapport/_delete_form.html.twig') }}
 {% endblock %}
