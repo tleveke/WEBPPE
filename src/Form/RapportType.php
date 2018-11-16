@@ -26,6 +26,8 @@ class RapportType extends AbstractType
             ->add('date',DateType::class, array(
                 'widget' => 'choice',
                 'label' => 'Saisir la date',
+                'format' => 'dd-MM-yyyy',
+
             ))
             ->add('motif',  ChoiceType::class, array(
                 'choices'  => array(

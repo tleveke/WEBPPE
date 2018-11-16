@@ -18,7 +18,10 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', DateType::class)
+            ->add('date', DateType::class,array(
+                'format' => 'dd-MM-yyyy',
+
+            ))
             ->add('choixTri',ChoiceType::class, array(
                 'choices'  => array(
                     'Au plus ancien' => null,

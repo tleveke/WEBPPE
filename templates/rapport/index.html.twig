@@ -39,7 +39,7 @@
         {% for rapport in rapports %}
             <tr>
                 <td>N°{{ rapport.id }}</td>
-                <td>{{ rapport.date ? rapport.date|date('Y-m-d') : '' }}</td>
+                <td>{{ rapport.date ? rapport.date|date('d-m-Y') : '' }}</td>
                 <td>{{ rapport.motif }}</td>
                 <td>{{ rapport.bilan }}</td>
                 <td>{{ rapport.idmedecin.prenom }} {{ rapport.idmedecin.nom }}</td>
