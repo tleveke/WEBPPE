@@ -34,9 +34,10 @@
         </tbody>
     </table>
 
-    <a href="{{ path('rapport_index') }}">back to list</a>
+    <a href="{{ path('rapport_index') }}">Retourner à la liste</a>
+    <br><br>
 
-    <a href="{{ path('rapport_edit', {'id': rapport.id}) }}">edit</a>
+    <a href="{{ path('rapport_edit', {'id': rapport.id}) }}">Modifier</a>
 
     {{ include('rapport/_delete_form.html.twig') }}
 {% endblock %}

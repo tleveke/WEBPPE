@@ -43,8 +43,9 @@
                 <td>{{ rapport.bilan }}</td>
                 <td>{{ rapport.idmedecin.prenom }} {{ rapport.idmedecin.nom }}</td>
                 <td>
-                    <a href="{{ path('rapport_show', {'id': rapport.id}) }}">show</a>
-                    <a href="{{ path('rapport_edit', {'id': rapport.id}) }}">edit</a>
+                    <a href="{{ path('rapport_show', {'id': rapport.id}) }}">Aperçu</a>
+                    <br>
+                    <a href="{{ path('rapport_edit', {'id': rapport.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
