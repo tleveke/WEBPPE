@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\Serializable;
 
 /**
  * Visiteur
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="visiteur")
  * @ORM\Entity
  */
-class Visiteur
+class Visiteur implements UserInterface, \Serializable
 {
     /**
      * @var string
@@ -36,16 +38,12 @@ class Visiteur
     private $prenom;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="username", type="string", length=20, nullable=true, options={"fixed"=true})
+     * @ORM\Column(type="string", length=25)
      */
     private $username;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="password", type="string", length=20, nullable=true, options={"fixed"=true})
+     * @ORM\Column(type="string", length=64)
      */
     private $password;
 
@@ -127,18 +125,17 @@ class Visiteur
         return $ret;
     }
 
-    public function getLogin(): ?string
+    public function getUsername(): ?string
     {
-        return $this->login;
+        return $this->username;
     }
 
-    public function setLogin(?string $login): self
+    public function setUsername(?string $username): self
     {
-        $this->login = $login;
+        $this->username = $username;
 
         return $this;
     }
-
     
     public function getPassword(): ?string
     {
@@ -212,5 +209,40 @@ class Visiteur
         return $this;
     }
 
+    public function getSalt()
+    {
+        return null;
+    }
 
+    public function getRoles()
+    {
+        return array('ROLE_VISITEUR');
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see\Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+        ));
+    }
+
+    /** @see\Serializable::unserialize() */
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->username,
+            $this->password,
+
+        ) = unserialize($serialized);
+    }
 }
+

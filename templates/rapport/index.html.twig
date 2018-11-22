@@ -4,8 +4,9 @@
 
 {% block body %}
 
-    <h1>Rapports du visiteur {{ nomvisiteur }}</h1>
-    <h1>{{status}}</h1>
+    <a href="{{ path('security_logout') }}">Se deconnecter</a>
+
+    <h1>Rapports du visiteur {{ app.user.nom }}</h1>
     
     <br><br>
     <a href="{{ path('rapport_new') }}" class="btn btn-info" role="button">Nouveau Rapport</a>
@@ -68,7 +69,7 @@
           table = document.getElementById("Table01");
           tr = table.getElementsByTagName("tr");
           for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[4];
+            td = tr[i].getElementsByTagName("td")[3];
             if (td) {
               if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
@@ -78,6 +79,6 @@
             }       
           }
         }
-        </script>
+    </script>
 
 {% endblock %}
