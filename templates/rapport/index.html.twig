@@ -3,6 +3,9 @@
 {% block title %}Rapport index{% endblock %}
 
 {% block body %}
+
+<a href="{{ path('security_logout') }}">Se deconnecter</a>
+
     <h1>Rapports du visiteur {{ app.user.nom }}</h1>
     
     <br><br>
