@@ -3,7 +3,7 @@
 {% block title %}Rapport index{% endblock %}
 
 {% block body %}
-    <h1>Rapports du visiteur {{ nomvisiteur }}</h1>
+    <h1>Rapports du visiteur {{ app.user.nom }}</h1>
     
     <br><br>
     <a href="{{ path('rapport_new') }}" class="btn btn-info" role="button">Nouveau Rapport</a>
