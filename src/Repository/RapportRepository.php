@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Rapport;
+use App\Entity\Visiteur;
 use App\Entity\Search;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
