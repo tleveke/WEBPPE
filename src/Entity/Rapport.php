@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Rapport
  *
  * @ORM\Table(name="rapport", indexes={@ORM\Index(name="rapport_fk1", columns={"idVisiteur"}), @ORM\Index(name="rapport_fk2", columns={"idMedecin"})})
- * @ORM\Entity(repositoryClass="App\Repository\triDateRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\RapportRepository")
  */
 class Rapport
 {

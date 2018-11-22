@@ -26,22 +26,37 @@ class RapportController extends AbstractController
     /**
      * @Route("/", name="rapport_index", methods="GET|POST")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        $rapports = $this->getDoctrine()
-            ->getRepository(Rapport::class)
-            ->findBy(['idvisiteur' => 'b16']);
+
+        $search = new Search;
+        $searchform = $this->createForm(SearchType::class, $search);
+
+        $searchform->handleRequest($request);
+        if ($searchform->isSubmitted() && $searchform->isValid() ) {
+
+            $rapports = $this->getDoctrine()
+                ->getRepository(Rapport::class)
+                ->finAllOrderedByDate($search);
+            $status = "searchfrom";
+        }
+        else {
+            $rapports = $this->getDoctrine()
+                ->getRepository(Rapport::class)
+                ->findBy(['idvisiteur' => 'b16']);
+            $status = "default";
+        }
+
+
         $visiteur = $this->getDoctrine()
             ->getRepository(Visiteur::class)
             ->findOneBy(['id' => 'b16']);
-
-        $search = new Search;
-        $searchform = $this->createForm(SearchType::class);
 
         return $this->render('rapport/index.html.twig', [
             'rapports' => $rapports,
             'nomvisiteur' => $visiteur->getNom(),
             'search' => $searchform->createView(),
+            'status' => $status,
         ]);
     }
 

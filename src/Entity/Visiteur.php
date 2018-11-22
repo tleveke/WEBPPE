@@ -38,16 +38,21 @@ class Visiteur
     /**
      * @var string|null
      *
-     * @ORM\Column(name="login", type="string", length=20, nullable=true, options={"fixed"=true})
+     * @ORM\Column(name="username", type="string", length=20, nullable=true, options={"fixed"=true})
      */
-    private $login;
+    private $username;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="mdp", type="string", length=20, nullable=true, options={"fixed"=true})
+     * @ORM\Column(name="password", type="string", length=20, nullable=true, options={"fixed"=true})
      */
-    private $mdp;
+    private $password;
+
+    /**
+     * @ORM\Column(name="pwdnoncryptee", type="string", length=20, nullable=true, options={"fixed"=true})
+     */
+    private $pwdnoncryptee;
 
     /**
      * @var string|null
@@ -134,14 +139,27 @@ class Visiteur
         return $this;
     }
 
-    public function getMdp(): ?string
+    
+    public function getPassword(): ?string
     {
-        return $this->mdp;
+        return $this->password;
     }
 
-    public function setMdp(?string $mdp): self
+    public function setPassword(?string $password): self
     {
-        $this->mdp = $mdp;
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getPwdnoncryptee(): ?string
+    {
+        return $this->pwdnoncryptee;
+    }
+
+    public function setPwdnoncryptee(?string $pwdnoncryptee): self
+    {
+        $this->pwdnoncryptee = $pwdnoncryptee;
 
         return $this;
     }
