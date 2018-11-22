@@ -32,31 +32,24 @@ class RapportController extends AbstractController
         $search = new Search;
         $searchform = $this->createForm(SearchType::class, $search);
 
+        $user = $this->getUser();
+
         $searchform->handleRequest($request);
         if ($searchform->isSubmitted() && $searchform->isValid() ) {
 
             $rapports = $this->getDoctrine()
                 ->getRepository(Rapport::class)
-                ->finAllOrderedByDate($search);
-            $status = "searchfrom";
+                ->finAllOrderedByDate($search,$user);
         }
         else {
             $rapports = $this->getDoctrine()
                 ->getRepository(Rapport::class)
-                ->findBy(['idvisiteur' => 'b16']);
-            $status = "default";
+                ->findBy(['idvisiteur' => $user->getId()]);
         }
-
-
-        $visiteur = $this->getDoctrine()
-            ->getRepository(Visiteur::class)
-            ->findOneBy(['id' => 'b16']);
 
         return $this->render('rapport/index.html.twig', [
             'rapports' => $rapports,
-            'nomvisiteur' => $visiteur->getNom(),
             'search' => $searchform->createView(),
-            'status' => $status,
         ]);
     }
 
@@ -69,6 +62,7 @@ class RapportController extends AbstractController
         foreach ($rapport->getOffrirs() as $offrir) {
             $orignalOffrirs->add($offrir);
         }
+        $rapport->setIdvisiteur($this->getUser());
         $form = $this->createForm(RapportType::class, $rapport);
         $form->handleRequest($request);
 
