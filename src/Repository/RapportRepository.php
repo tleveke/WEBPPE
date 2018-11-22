@@ -13,18 +13,18 @@ class RapportRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Rapport::class);
     }
-    public function finAllOrderedByDate(Search $search)
+    public function finAllOrderedByDate(Search $search,Visiteur $visiteur)
     {
 
         $queryBuilder = $this->createQueryBuilder('rapport')
             ->where('rapport.date '.$search->getGrandeur().' :date')
             ->andWhere("rapport.idvisiteur = :id")
             ->setParameter('date', $search->getDate())
-            ->setParameter('id', 'b16')
+            ->setParameter('id', $visiteur->getId())
             ->orderBy('rapport.date', $search->getChoixTri())
             ->getQuery();
         return $queryBuilder->getResult();
-        
+
     }
 }
 ?>

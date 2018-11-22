@@ -55,6 +55,7 @@ class RapportType extends AbstractType
                         ->orderBy('u.nom', 'ASC');
                 },
                 'label' => 'Nom du Visiteur',
+                'disabled' => 'true',
             ))
             ->add('idmedecin', EntityType::class, array(
                 'class' => Medecin::class,
