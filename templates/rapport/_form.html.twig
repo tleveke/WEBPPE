@@ -1,3 +1,4 @@
+{{ dump(form) }}
 {{ form_start(form) }}
 
 {{ form_row(form.date) }}
@@ -13,7 +14,7 @@
                 <strong>{{ row.vars.value.medicament.nomcommercial }}</strong>
             </div>
             <div class="panel-body">
-                {{ form_row(row) }}
+                {{ form_row(form) }}
             </div>
         </div>
     {% else %}

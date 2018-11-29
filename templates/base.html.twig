@@ -4,11 +4,16 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <nav class="row navbar navbar-inverse"><!-- top nav -->
+            <ul class="nav navbar-nav">
+                    <li><a href="{{ path('security_logout') }}">Se deconnecter</a></li>
+            </ul>
+        </nav><!-- end of top nav -->
+        {% endif %}
     </head>
     <body>
         <div class="container">
-
-            <a href="{{ path('security_logout') }}">Se deconnecter</a>
             {% block body %}{% endblock %}
         </div>
         <script
@@ -16,6 +21,10 @@
                 integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
                 crossorigin="anonymous"></script>
         <script src="{{ asset('formOffrir.js') }}"></script>
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
+        <script src="{{ asset('autocomplete.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

@@ -137,4 +137,5 @@ class RapportController extends AbstractController
 
         return $this->redirectToRoute('rapport_index');
     }
+
 }
