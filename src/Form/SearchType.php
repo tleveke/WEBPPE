@@ -28,7 +28,10 @@ class SearchType extends AbstractType
             ->add('date', DateType::class, array(
                 'widget' => 'choice',
                 'format' => 'dd-MM-yyyy',
-                'label' => 'Saisir la date',
+                'label' => 'Choisir la date',
+                'placeholder' => array(
+                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
+                )
             ))
             ->add('choixTri',ChoiceType::class, array(
                 'choices'  => array(

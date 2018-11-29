@@ -18,10 +18,9 @@
         </div>
     {% else %}
         {{ form_row(form.offrirs) }}
-        <p>Le rapport n'a pas d'échantillon</p>
     {% endfor %}
 </div>
 <br>
-<button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+<button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button>
 
 {{ form_end(form) }}

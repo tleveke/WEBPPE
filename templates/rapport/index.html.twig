@@ -7,28 +7,34 @@
     <h1>Rapports du visiteur {{ app.user.nom }}</h1>
     
     <br><br>
-    <a href="{{ path('rapport_new') }}" class="btn btn-info" role="button">Nouveau Rapport</a>
-    <br><br>
+    <a href="{{ path('rapport_new') }}" class="btn btn-primary btn-block" role="button">Créer un nouveau rapport</a>
+    <br>
 
     {{ form_start(search) }}
+
+    <h3><u>Trier la recherche</u></h3>
+    <br>
+    <a href="{{ path('index') }}" class="btn btn-info" role="button">Réinitialiser la recherche</a>
+    <br><br>
     <div class='row'>
-        <div class="col-sm-3">
+        <div class="col-sm-6">
             {{ form_row(search.grandeur) }}
-        </div>
-        <div class="col-sm-3">
             {{ form_row(search.date) }}
+
+            
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-6">
             {{ form_row(search.choixTri) }}
         </div>
-        <div class="col-sm-3">
-            <button class="btn">{{ button_label|default('Rechercher') }}</button>
-        </div>
+
     </div>
+    <p><b>Nom du médecin</b></p>
+    <input type="text" id="InputchoiseM" onkeyup="myFunction()" placeholder="Nom du médecin">
+    <br><br>
+    <button class="btn btn-success">{{ button_label|default('Rechercher') }}</button>
+    <br><br>
     {{ form_end(search) }}
-    <a href="{{ path('index') }}" class="btn btn-success" role="button">Revenir</a>
-    <input type="text" id="InputchoiseM" onkeyup="myFunction()" placeholder="choisi medecien"> 
-       
+    
     <table class="table" id="Table01">
         <thead>
             <tr>
@@ -36,7 +42,7 @@
                 <th>Motif du rapport</th>
                 <th>Bilan du rapport</th>
                 <th>Nom du medecin</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -47,9 +53,9 @@
                 <td>{{ rapport.bilan }}</td>
                 <td>{{ rapport.idmedecin.prenom }} {{ rapport.idmedecin.nom }}</td>
                 <td>
-                    <a href="{{ path('rapport_show', {'id': rapport.id}) }}">Aperçu</a>
+                    <a href="{{ path('rapport_show', {'id': rapport.id}) }}" class="btn btn-default" role="button">Aperçu</a>
                     <br>
-                    <a href="{{ path('rapport_edit', {'id': rapport.id}) }}">Modifier</a>
+                    <a href="{{ path('rapport_edit', {'id': rapport.id}) }}" class="btn btn-default" role="button">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -78,5 +84,4 @@
           }
         }
     </script>
-
 {% endblock %}
