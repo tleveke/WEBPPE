@@ -67,7 +67,7 @@ class Rapport
     /**
      * @var Collection
      * 
-     * @ORM\OneToMany(targetEntity="Offrir", mappedBy="rapport", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Offrir", mappedBy="rapport", cascade={"remove","persist"})
      */
     private $offrirs;
 
