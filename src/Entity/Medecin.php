@@ -17,7 +17,7 @@ class Medecin
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -43,6 +43,41 @@ class Medecin
     private $adresse;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="codePostal", type="string", length=5, nullable=false)
+     */
+    private $codepostal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="departement", type="string", length=5, nullable=false)
+     */
+    private $departement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=80, nullable=false)
+     */
+    private $ville;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=80, nullable=false)
+     */
+    private $latitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="longitude", type="string", length=80, nullable=false)
+     */
+    private $longitude;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="tel", type="string", length=15, nullable=true)
@@ -55,13 +90,6 @@ class Medecin
      * @ORM\Column(name="specialitecomplementaire", type="string", length=50, nullable=true)
      */
     private $specialitecomplementaire;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="departement", type="integer", nullable=false)
-     */
-    private $departement;
 
     public function getId(): ?int
     {
@@ -110,6 +138,66 @@ class Medecin
         return $this;
     }
 
+    public function getCodepostal(): ?string
+    {
+        return $this->codepostal;
+    }
+
+    public function setCodepostal(string $codepostal): self
+    {
+        $this->codepostal = $codepostal;
+
+        return $this;
+    }
+
+    public function getDepartement(): ?string
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(string $departement): self
+    {
+        $this->departement = $departement;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?string
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(string $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?string
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(string $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
     public function getTel(): ?string
     {
         return $this->tel;
@@ -130,18 +218,6 @@ class Medecin
     public function setSpecialitecomplementaire(?string $specialitecomplementaire): self
     {
         $this->specialitecomplementaire = $specialitecomplementaire;
-
-        return $this;
-    }
-
-    public function getDepartement(): ?int
-    {
-        return $this->departement;
-    }
-
-    public function setDepartement(int $departement): self
-    {
-        $this->departement = $departement;
 
         return $this;
     }

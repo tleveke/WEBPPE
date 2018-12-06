@@ -7,6 +7,7 @@
     <h1>Rapports du visiteur {{ app.user.nom }}</h1>
     
     <br><br>
+    <a href="{{ path('medecin_api') }}" class="btn btn-primary btn-block" role="button">API medecin</a>
     <a href="{{ path('rapport_new') }}" class="btn btn-primary btn-block" role="button">Créer un nouveau rapport</a>
     <br>
 
@@ -31,7 +32,7 @@
     <button class="btn btn-success">{{ button_label|default('Rechercher') }}</button>
     <br><br>
     {{ form_end(search) }}
-    <p><b>Nom du médecin</b></p>
+    <h3><u>Nom du médecin</u></h3>
     <input type="text" id="InputchoiseM" onkeyup="myFunction()" placeholder="Nom du médecin">
     <br><br>
     <table class="table" id="Table01">

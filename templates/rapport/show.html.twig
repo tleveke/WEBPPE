@@ -27,12 +27,34 @@
                 <th>Nom du médecin</th>
                 <td>{{ rapport.idmedecin.prenom }} {{ rapport.idmedecin.nom }}</td>
             </tr>
+            {% if echantillons|length > 0 %}
+                </tbody>
+                </table>
+                <strong>Echantillon offerts pendant la visite : </strong><br><br>
+                {% for echantillon in echantillons %}
+                <div class="panel panel-warning"> 
+                    <div class="panel-body">
+                        <p>Le medicament {{echantillon.medicament.nomcommercial}}, la quantite donner est {{echantillon.quantite}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <tbody>
+                <table>
+            {% else %}
+                <tr>
+                    <th>Echantillon</th>
+                    <td colspan="5">Aucun echantillon a été offert</td>
+                </tr>
+            {% endif %}
+
             {# <tr>
                 <th>Echantillon offert</th>
                 <td>Medicament = {{ rapport.offrirs.medicament.nomcommercial }}, nb = {{rapport.offrirs.quantite}} </td>
             </tr> #}
         </tbody>
     </table>
+
+    <br><br>
 
     <a href="{{ path('rapport_edit', {'id': rapport.id}) }}" class="btn btn-primary">Modifier</a>
 

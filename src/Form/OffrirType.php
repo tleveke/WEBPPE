@@ -19,7 +19,7 @@ class OffrirType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
+            $builder
             ->add('medicament', EntityType::class, array(
                 'class' => Medicament::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -30,9 +30,7 @@ class OffrirType extends AbstractType
                 'label' => 'Nom du medicament',
 
             ))
-            ->add('quantite',IntegerType::class)
-            
-        ;
+            ->add('quantite',IntegerType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
