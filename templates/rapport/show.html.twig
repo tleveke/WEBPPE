@@ -3,6 +3,23 @@
 {% block title %}Rapport{% endblock %}
 
 {% block body %}
+
+    <center>
+        <div class="row">
+            <div class='col-lg-4'>
+                <a href="{{ path('rapport_index') }}" class="btn btn-primary" role="button" >Retourner à la liste des rapport de {{ rapport.idvisiteur.nom }}</a>
+            </div>
+            <div class='col-lg-4'>
+                <a href="{{ path('rapport_edit', {'id': rapport.id}) }}" class="btn btn-info" role="button">Modifier le rapport</a>
+            </div>
+            <div class='col-lg-4'>
+                {{ include('rapport/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </center>
+
+    <br><br>
+
     <h1>Rapport</h1>
 
     <table class="table">
@@ -34,7 +51,7 @@
                 {% for echantillon in echantillons %}
                 <div class="panel panel-warning"> 
                     <div class="panel-body">
-                        <p>Le medicament {{echantillon.medicament.nomcommercial}}, la quantite donner est {{echantillon.quantite}}</p>
+                        <p>Le medicament {{echantillon.medicament.nomcommercial}}, la quantite de ce medicament offert est {{echantillon.quantite}}</p>
                     </div>
                 </div>
                 {% endfor %}
@@ -54,13 +71,4 @@
         </tbody>
     </table>
 
-    <br><br>
-
-    <a href="{{ path('rapport_edit', {'id': rapport.id}) }}" class="btn btn-primary">Modifier</a>
-
-    {{ include('rapport/_delete_form.html.twig') }}
-
-    <br>
-
-    <a href="{{ path('rapport_index') }}" class="btn btn-default" role="button" >Retourner à la liste</a>
 {% endblock %}

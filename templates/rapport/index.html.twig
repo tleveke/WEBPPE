@@ -53,9 +53,18 @@
                 <td>{{ rapport.bilan }}</td>
                 <td>{{ rapport.idmedecin.prenom }} {{ rapport.idmedecin.nom }}</td>
                 <td>
-                    <a href="{{ path('rapport_show', {'id': rapport.id}) }}" class="btn btn-default" role="button">Aperçu</a>
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <a href="{{ path('rapport_show', {'id': rapport.id}) }}" class="btn btn-success" role="button">Aperçu</a>
+                        </div>
+                        <div class='col-sm-4'>
+                            <a href="{{ path('rapport_edit', {'id': rapport.id}) }}" class="btn btn-info" role="button">Modifier</a>
+                        </div>
+                        <div class='col-sm-4'>
+                            {{ include('rapport/_delete_form.html.twig') }}
+                        </div>
+                    </div>
                     <br>
-                    <a href="{{ path('rapport_edit', {'id': rapport.id}) }}" class="btn btn-default" role="button">Modifier</a>
                 </td>
             </tr>
         {% else %}

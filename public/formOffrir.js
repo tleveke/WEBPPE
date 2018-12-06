@@ -65,7 +65,7 @@ function addNewForm() {
  */
 function addRemoveButton ($panel) {
     // create remove button
-    var $removeButton = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+    var $removeButton = $('<a href="#" class="btn btn-danger">Supprimer cette échantillon</a>');
     // appending the removebutton to the panel footer
     var $panelFooter = $('<div class="panel-footer"></div>').append($removeButton);
     // handle the click event of the remove button
