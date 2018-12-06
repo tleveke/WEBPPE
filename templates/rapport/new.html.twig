@@ -3,10 +3,17 @@
 {% block title %}Nouveau rapport{% endblock %}
 
 {% block body %}
+
+    
+    <center>
+        <a href="{{ path('rapport_index') }}" class="btn btn-primary" role="button" >Retourner à la liste des rapport de {{ rapport.idvisiteur.nom }}</a>
+    </center>
+
+    <br><br>
+
+
     <h1>Créer un nouveau rapport</h1>
 
     {{ include('rapport/_form.html.twig') }}
 
-    <br>
-    <a href="{{ path('rapport_index') }}" class="btn btn-default" role="button" >Retourner à la liste</a>
 {% endblock %}

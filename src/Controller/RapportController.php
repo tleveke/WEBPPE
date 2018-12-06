@@ -6,6 +6,7 @@ use App\Entity\Rapport;
 use App\Entity\Search;
 use App\Entity\Offrir;
 use App\Entity\Visiteur;
+use App\Entity\Medecin;
 
 use App\Form\RapportType;
 use App\Form\SearchType;
@@ -13,10 +14,11 @@ use App\Form\OffrirType;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/rapport")
@@ -86,7 +88,12 @@ class RapportController extends AbstractController
      */
     public function show(Rapport $rapport): Response
     {
-        return $this->render('rapport/show.html.twig', ['rapport' => $rapport]);
+        $offrirs = $rapport->getOffrirs();
+
+        return $this->render('rapport/show.html.twig', [
+            'rapport' => $rapport,
+            'echantillons' => $offrirs
+        ]);
     }
 
     /**

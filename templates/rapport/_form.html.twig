@@ -1,4 +1,3 @@
-{# {{ dump(form) }}#}
 {{ form_start(form) }}
 {{ form_row(form.date) }}
 {{ form_row(form.motif) }}
@@ -12,15 +11,15 @@
             <div class="panel-heading">
                 <strong>{{ row.vars.value.medicament.nomcommercial }}</strong>
             </div>
-            <div class="panel-body">
-                {{ form_row(form) }}
+            <div class="panel-body" id="test">
+                {{ form_row(row) }}
             </div>
         </div>
     {% else %}
         {{ form_row(form.offrirs) }}
     {% endfor %}
 </div>
-<br>
-<button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button>
+<br><br>
+<center><button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button></center>
 
 {{ form_end(form) }}

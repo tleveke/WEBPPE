@@ -3,13 +3,24 @@
 {% block title %}Modifier le rapport{% endblock %}
 
 {% block body %}
+    <center>
+        <div class="row">
+            <div class='col-lg-4'>
+                <a href="{{ path('rapport_index') }}" class="btn btn-primary" role="button" >Retourner à la liste des rapport de {{ rapport.idvisiteur.nom }}</a>
+            </div>
+            <div class='col-lg-4'>
+                <a href="{{ path('rapport_show', {'id': rapport.id}) }}" class="btn btn-info" role="button">Aperçu du rapport</a>
+            </div>
+            <div class='col-lg-4'>
+                {{ include('rapport/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </center>
+    <br><br>
+
     <h1>Modifier le rapport</h1>
 
     {{ include('rapport/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 
-    {{ include('rapport/_delete_form.html.twig') }}
 
-    <br>
-
-    <a href="{{ path('rapport_index') }}" class="btn btn-default" role="button" >Retourner à la liste</a>
 {% endblock %}

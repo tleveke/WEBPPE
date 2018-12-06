@@ -3,6 +3,23 @@
 {% block title %}Rapport{% endblock %}
 
 {% block body %}
+
+    <center>
+        <div class="row">
+            <div class='col-lg-4'>
+                <a href="{{ path('rapport_index') }}" class="btn btn-primary" role="button" >Retourner à la liste des rapport de {{ rapport.idvisiteur.nom }}</a>
+            </div>
+            <div class='col-lg-4'>
+                <a href="{{ path('rapport_edit', {'id': rapport.id}) }}" class="btn btn-info" role="button">Modifier le rapport</a>
+            </div>
+            <div class='col-lg-4'>
+                {{ include('rapport/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </center>
+
+    <br><br>
+
     <h1>Rapport</h1>
 
     <table class="table">
@@ -27,6 +44,26 @@
                 <th>Nom du médecin</th>
                 <td>{{ rapport.idmedecin.prenom }} {{ rapport.idmedecin.nom }}</td>
             </tr>
+            {% if echantillons|length > 0 %}
+                </tbody>
+                </table>
+                <strong>Echantillon offerts pendant la visite : </strong><br><br>
+                {% for echantillon in echantillons %}
+                <div class="panel panel-warning"> 
+                    <div class="panel-body">
+                        <p>Le medicament {{echantillon.medicament.nomcommercial}}, la quantite de ce medicament offert est {{echantillon.quantite}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <tbody>
+                <table>
+            {% else %}
+                <tr>
+                    <th>Echantillon</th>
+                    <td colspan="5">Aucun echantillon a été offert</td>
+                </tr>
+            {% endif %}
+
             {# <tr>
                 <th>Echantillon offert</th>
                 <td>Medicament = {{ rapport.offrirs.medicament.nomcommercial }}, nb = {{rapport.offrirs.quantite}} </td>
@@ -34,11 +71,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('rapport_edit', {'id': rapport.id}) }}" class="btn btn-primary">Modifier</a>
-
-    {{ include('rapport/_delete_form.html.twig') }}
-
-    <br>
-
-    <a href="{{ path('rapport_index') }}" class="btn btn-default" role="button" >Retourner à la liste</a>
 {% endblock %}
