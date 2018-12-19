@@ -66,7 +66,7 @@ class RapportType extends AbstractType
                 'allow_add' => true,
                 // self explanatory, this one allows the form to be removed
                 'allow_delete' => true,
-                'label' => 'La liste des échantillon'
+                'label' => 'La liste des échantillons'
             ])
         ;
     }
