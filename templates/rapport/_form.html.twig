@@ -1,9 +1,7 @@
 {{ form_start(form) }}
-
 {{ form_row(form.date) }}
 {{ form_row(form.motif) }}
 {{ form_row(form.bilan) }}
-{{ form_row(form.idvisiteur) }}
 {{ form_row(form.idmedecin) }}
 {# render each row and field in the embedded form, in this example it's rendering the experience (Exp) fiels as rows #}
 <div id="offrir_list" data-prototype="{{ form_widget(form.offrirs.vars.prototype)|e('html_attr') }}">
@@ -24,3 +22,45 @@
 <center><button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button></center>
 
 {{ form_end(form) }}
+
+<script>
+    
+        $( document ).ready(function() {
+            $('#rapport_offrirs_0_medicament').select2({
+            ajax: {
+                url: "/MedicamentAPI",
+                dataType: 'json',
+                data: function (params) {
+                    return {
+                      page: params.nomcommercial
+                    };
+                },
+                processResults: function (data, params) {
+                  return {
+                    results: data
+                  };
+                },
+                cache: true
+              },
+              placeholder: 'Search for a repository',
+              escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+              minimumInputLength: 1,
+              templateResult: formatRepo,
+              templateSelection: formatRepoSelection
+            });
+
+            function formatRepo (repo) {
+          
+              var markup = "<div class='select2-result-repository clearfix'><div class='select2-result-repository__title'>" + repo.nomcommercial + "</div></div>";
+            
+              return markup;
+            }
+
+            function formatRepoSelection (repo) {
+              return repo.nomcommercial;
+            }
+        });
+        
+       
+</script>
+

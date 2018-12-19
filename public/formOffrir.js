@@ -1,7 +1,7 @@
 // this variable is the list in the dom, it's initiliazed when the document is ready
 var $collectionHolder;
 // the link which we click on to add new items
-var $addNewItem = $('<a href="#" class="btn btn-info">Ajouter nouvelle échantillon </a>');
+var $addNewItem = $('<a href="#" class="btn btn-info">Ajouter nouvel échantillon </a>');
 // when the page is loaded and ready
 $(document).ready(function () {
     // get the collectionHolder, initilize the var by getting the list;
@@ -65,7 +65,7 @@ function addNewForm() {
  */
 function addRemoveButton ($panel) {
     // create remove button
-    var $removeButton = $('<a href="#" class="btn btn-danger">Supprimer cette échantillon</a>');
+    var $removeButton = $('<a href="#" class="btn btn-danger">Supprimer cet échantillon</a>');
     // appending the removebutton to the panel footer
     var $panelFooter = $('<div class="panel-footer"></div>').append($removeButton);
     // handle the click event of the remove button

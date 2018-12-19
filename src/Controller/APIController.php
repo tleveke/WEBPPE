@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Rapport;
 use App\Entity\Medecin;
+use App\Entity\Medicament;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -13,17 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class MedecinAPIController extends AbstractController
+class APIController extends AbstractController
 {
-    /**
-     * @Route("/medecin/a/p/i", name="medecin_a_p_i")
-     */
-    public function index()
-    {
-        return $this->render('medecin_api/index.html.twig', [
-            'controller_name' => 'MedecinAPIController',
-        ]);
-    }
 
     /**
      * @Route("/MedecinAPI", name="medecin_api", methods="GET|POST")
@@ -58,5 +50,30 @@ class MedecinAPIController extends AbstractController
         
 
         return new JsonResponse($medecins);
+    }
+
+
+    /**
+     * @Route("/MedicamentAPI", name="medicament_api", methods="GET|POST")
+     */
+    public function MedicamentAPI(Request $request): Response
+    {
+
+        $medicaments = $this->getDoctrine()
+                ->getRepository(Medicament::class)
+                ->findAll();
+        
+        /* @var $rapports Rapport[] */
+        
+        $lesmedicaments = [];
+        foreach ($medicaments as $medicament) {
+            $lesmedicaments[] = [ 
+                'id' => $medicament->getId(),
+                'nomcommercial' => $medicament->getNomcommercial(),
+            ];
+        }
+        
+
+        return new JsonResponse($lesmedicaments);
     }
 }

@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1>Rapports du visiteur {{ app.user.nom }}</h1>
+    <h1>Rapports de {{ app.user.nom }}</h1>
     
     <br><br>
     <a href="{{ path('medecin_api') }}" class="btn btn-primary btn-block" role="button">API medecin</a>
@@ -13,28 +13,48 @@
 
     {{ form_start(search) }}
 
-    <h3><u>Trier la recherche</u></h3>
+    <h3>Trier les rapports de {{ app.user.nom }}</h3>
     <br>
-    <a href="{{ path('index') }}" class="btn btn-info" role="button">Réinitialiser la recherche</a>
+    <center><a href="{{ path('index') }}" class="btn btn-info" role="button">Réinitialiser la recherche</a></center>
     <br><br>
-    <div class='row'>
+    
+    <div class="row">
         <div class="col-sm-6">
-            {{ form_row(search.grandeur) }}
-            {{ form_row(search.date) }}
-
-            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Trier selon la date</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{ form_row(search.grandeur) }}
+                            {{ form_row(search.date) }} 
+                        </div>
+                        <div class="col-sm-6">
+                            <center>{{ form_row(search.choixTri) }}</center>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <center><button class="btn btn-success">{{ button_label|default('Rechercher') }}</button></center>
+                </div>
+            </div>
+            {{ form_end(search) }}
         </div>
         <div class="col-sm-6">
-            {{ form_row(search.choixTri) }}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Trier selon le nom du médecin</h3>
+                </div>
+                <div class="panel-body">
+                    <center><input type="text" id="InputchoiseM" onkeyup="myFunction()" placeholder="Nom du médecin"></center>
+                </div>
+            </div>
         </div>
-
     </div>
-    <button class="btn btn-success">{{ button_label|default('Rechercher') }}</button>
+
     <br><br>
-    {{ form_end(search) }}
-    <h3><u>Nom du médecin</u></h3>
-    <input type="text" id="InputchoiseM" onkeyup="myFunction()" placeholder="Nom du médecin">
-    <br><br>
+    
     <table class="table" id="Table01">
         <thead>
             <tr>

@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="medicament", indexes={@ORM\Index(name="medicament_fk", columns={"idFamille"})})
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\MedicamentRepository")
  */
 class Medicament
 {
@@ -167,6 +168,11 @@ class Medicament
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+       return $this->getNomcommercial();
     }
 
 }

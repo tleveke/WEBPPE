@@ -20,23 +20,20 @@ class SearchType extends AbstractType
         $builder
             ->add('grandeur',ChoiceType::class, array(
                 'choices'  => array(
-                    'Plus grand que' => '>',
-                    'Moins grand que' => '<',
+                    'Après le' => '>=',
+                    'Avant le' => '<=',
                 ),
-                'label' => 'Choisir la grandeur',
+                'label' => 'Rechercher',
             ))
             ->add('date', DateType::class, array(
                 'widget' => 'choice',
                 'format' => 'dd-MM-yyyy',
-                'label' => 'Choisir la date',
-                'placeholder' => array(
-                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
-                )
+                'label' => 'Choisir la date'
             ))
             ->add('choixTri',ChoiceType::class, array(
                 'choices'  => array(
+                    'Du plus recent' => 'desc',
                     'Au plus ancien' => 'asc',
-                    'Au plus recent' => 'desc',
                 ),
                 'label' => 'Choisir le tri',
             ))

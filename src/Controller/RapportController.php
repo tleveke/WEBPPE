@@ -7,6 +7,7 @@ use App\Entity\Search;
 use App\Entity\Offrir;
 use App\Entity\Visiteur;
 use App\Entity\Medecin;
+use App\Entity\Medicament;
 
 use App\Form\RapportType;
 use App\Form\SearchType;
@@ -32,6 +33,7 @@ class RapportController extends AbstractController
     {
 
         $search = new Search;
+        $search->setGrandeur('Plus grand que');
         $searchform = $this->createForm(SearchType::class, $search);
 
         $user = $this->getUser();
@@ -46,7 +48,10 @@ class RapportController extends AbstractController
         else {
             $rapports = $this->getDoctrine()
                 ->getRepository(Rapport::class)
-                ->findBy(['idvisiteur' => $user->getId()]);
+                ->findBy(
+                    ['idvisiteur' => $user->getId()],
+                    ['date' => 'DESC']
+                );
         }
 
         return $this->render('rapport/index.html.twig', [
@@ -82,6 +87,7 @@ class RapportController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
 
     /**
      * @Route("/{id}", name="rapport_show", methods="GET")

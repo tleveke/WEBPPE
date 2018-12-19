@@ -45,18 +45,6 @@ class RapportType extends AbstractType
             ->add('bilan', TextareaType::class, array(
                 'attr' => array('class' => 'tinymce'),
             ))
-            ->add('idvisiteur', EntityType::class, array(
-                'class' => Visiteur::class,
-                'choice_label' => function ($visiteur) {
-                    return $visiteur->getPrenomNom();
-                },
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->orderBy('u.nom', 'ASC');
-                },
-                'label' => 'Nom du Visiteur',
-                'disabled' => 'true',
-            ))
             ->add('idmedecin', EntityType::class, array(
                 'class' => Medecin::class,
                 'choice_label' => function ($medecin) {
