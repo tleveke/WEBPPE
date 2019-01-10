@@ -7,7 +7,7 @@
     <center>
         <div class="row">
             <div class='col-lg-4'>
-                <a href="{{ path('rapport_index') }}" class="btn btn-primary" role="button" >Retourner à la liste des rapport de {{ rapport.idvisiteur.nom }}</a>
+                <a href="{{ path('rapport_index') }}" class="btn btn-primary" role="button" >Retourner à la liste des rapports de {{ rapport.idvisiteur.nom }}</a>
             </div>
             <div class='col-lg-4'>
                 <a href="{{ path('rapport_edit', {'id': rapport.id}) }}" class="btn btn-info" role="button">Modifier le rapport</a>
@@ -47,7 +47,7 @@
                 {% for echantillon in echantillons %}
                 <div class="panel panel-warning"> 
                     <div class="panel-body">
-                        <p>Le medicament {{echantillon.medicament.nomcommercial}}, la quantite de ce medicament offert est {{echantillon.quantite}}</p>
+                        <p>Pendant la visite, {{echantillon.quantite}} échantillons de {{echantillon.medicament.nomcommercial}} ont été offert </p>
                     </div>
                 </div>
                 {% endfor %}
@@ -56,7 +56,7 @@
             {% else %}
                 <tr>
                     <th>Echantillon</th>
-                    <td colspan="5">Aucun echantillon a été offert</td>
+                    <td colspan="5">Aucun échantillon a été offert</td>
                 </tr>
             {% endif %}
 
