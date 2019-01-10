@@ -82,11 +82,17 @@ class RapportController extends AbstractController
             return $this->redirectToRoute('rapport_index');
         }
 
+        //$lesmedicaments = $this->getMedicaments();
+
         return $this->render('rapport/new.html.twig', [
             'rapport' => $rapport,
             'form' => $form->createView(),
         ]);
     }
+
+
+
+
 
 
     /**
@@ -102,6 +108,13 @@ class RapportController extends AbstractController
         ]);
     }
 
+
+
+
+
+
+
+
     /**
      * @Route("/{id}/edit", name="rapport_edit", methods="GET|POST")
      */
@@ -114,13 +127,14 @@ class RapportController extends AbstractController
 
         $form = $this->createForm(RapportType::class, $rapport);
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             
             $em = $this->getDoctrine()->getManager();
 
             foreach ($orignalOffrirs as $offrir) {
-                 // check if the exp is in the $user->getExp()
+                // check if the exp is in the $user->getExp()
                 //dump($user->getExp()->contains($exp));
                 if ($rapport->getOffrirs()->contains($offrir) === false) {
                     $em->remove($offrir);
@@ -137,6 +151,11 @@ class RapportController extends AbstractController
         ]);
     }
 
+
+
+
+
+
     /**
      * @Route("/{id}", name="rapport_delete", methods="DELETE")
      */
@@ -152,3 +171,92 @@ class RapportController extends AbstractController
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+    //public function getMedicaments() {
+    //    $lesMedicaments =  $this->getDoctrine()
+    //    ->getRepository(Medicament::class)
+    //    ->findAll();
+    //
+    //    $lesmedicaments = [];
+    //    foreach ($lesMedicaments as $medicament) {
+    //        $lesmedicaments[] = $medicament->getNomcommercial();
+    //        //$lesmedicaments[] = '{"label": ' . $medicament->getNomcommercial() .', "value": '. $medicament->getId(). '}';
+    //    }
+    //
+    //    return $lesmedicaments;
+    //}
+
+
+/*
+public function new(Request $request): Response
+    {
+        $rapport = new Rapport();
+        foreach ($rapport->getOffrirs() as $offrir) {
+            $orignalOffrirs->add($offrir);
+        }
+        $rapport->setIdvisiteur($this->getUser());
+        $form = $this->createForm(RapportType::class, $rapport);
+        //$content2 = $request->get('rapport');
+        //foreach ($content2['offrirs'] as $offrir) {
+        //    $newoffrir = new Offrir();
+        //    $medicament = $this->getDoctrine()->getRepository(Medicament::class)->find($offrir['medicament']);
+        //    $newoffrir->setMedicament($medicament);
+        //    $newoffrir->setQuantite($offrir['quantite']);
+        //    $rapport->addOffrir($newoffrir);
+        //}
+        $form->handleRequest($request);
+
+        //$data = $form->getData();
+
+        //if ( $content2 !== null) {
+
+            #var_dump($content2['offrirs'][0]);
+            #var_dump($content2['date']);
+            #$newdate = new \DateTime('@'.strtotime('now'));
+            #var_dump($newdate);
+            #$rapport->setDate($newdate);
+            #$rapport->setMotif($content2['motif']);
+            #$rapport->setBilan($content2['bilan']);
+            //$visiteur = $this->getDoctrine()->getRepository(Medecin::class)->find($content2['idmedecin']);
+            //$rapport->setIdmedecin($visiteur);
+            //var_dump($rapport);
+
+        //}
+            
+        //foreach ($rapport->getOffrirs() as $offrir) {
+//
+        //    $lemedicament =  $this->getDoctrine()
+        //        ->getRepository(Medicament::class)
+        //        ->findBy(['nomcommercial' => $offrir->getMedicament()]);
+        //    $offrir->setMedicament($lemedicament);
+        //}
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            //$em = $this->getDoctrine()->getManager();
+            //$em->persist($rapport);
+            //$em->flush();
+
+            return $this->redirectToRoute('rapport_new');
+        }
+
+        //$lesmedicaments = $this->getMedicaments();
+
+        return $this->render('rapport/new.html.twig', [
+            'rapport' => $rapport,
+            'form' => $form->createView(),
+            'lesMedicaments' => $lesmedicaments,
+        ]);
+    }
+    */

@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1>Rapports de {{ app.user.nom }}</h1>
+    <center><h1>Rapports de {{ app.user.nom }}</h1></center>
     
     <br><br>
     <a href="{{ path('medecin_api') }}" class="btn btn-primary btn-block" role="button">API medecin</a>
@@ -13,16 +13,16 @@
 
     {{ form_start(search) }}
 
-    <h3>Trier les rapports de {{ app.user.nom }}</h3>
+    <center><h3>Trier les rapports de {{ app.user.nom }}</h3></center>
     <br>
-    <center><a href="{{ path('index') }}" class="btn btn-info" role="button">Réinitialiser la recherche</a></center>
+    <center><a href="{{ path('rapport_index') }}" class="btn btn-info" role="button">Réinitialiser la recherche</a></center>
     <br><br>
     
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3>Trier selon la date</h3>
+                    <center><h3>Trier selon la date</h3></center>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -31,7 +31,7 @@
                             {{ form_row(search.date) }} 
                         </div>
                         <div class="col-sm-6">
-                            <center>{{ form_row(search.choixTri) }}</center>
+                            {{ form_row(search.choixTri) }}
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
         <div class="col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3>Trier selon le nom du médecin</h3>
+                    <center><h3>Trier selon le nom du médecin</h3></center>
                 </div>
                 <div class="panel-body">
                     <center><input type="text" id="InputchoiseM" onkeyup="myFunction()" placeholder="Nom du médecin"></center>

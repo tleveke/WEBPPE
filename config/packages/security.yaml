@@ -13,7 +13,9 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/ 
             security: false
-        
+        #login:
+        #    pattern: ^/login
+        #    security: false
         main:
 # toutes les URL commenc¸ant par « / » (c'est-a`-dire tout le site) sont prote´ge´es par ce pare-feu. On dit qu'elles sont derrie`re le pare-feu
             pattern: ^/
@@ -30,7 +32,7 @@ security:
             logout:
                 # La route de deconnexion
                 path: security_logout
-# La route sur laquelle doit e^tre rediriger l'utilisateur apres une deconnexion
+# La route sur laquelle doit être rediriger l'utilisateur apres une deconnexion
                 target: security_login
     access_control:
         - { path: '^/rapport', roles: ROLE_VISITEUR }

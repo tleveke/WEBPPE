@@ -3,15 +3,17 @@
 {{ form_row(form.motif) }}
 {{ form_row(form.bilan) }}
 {{ form_row(form.idmedecin) }}
-{# render each row and field in the embedded form, in this example it's rendering the experience (Exp) fiels as rows #}
 <div id="offrir_list" data-prototype="{{ form_widget(form.offrirs.vars.prototype)|e('html_attr') }}">
     {% for row in form.offrirs %}
         <div class="panel panel-warning">
             <div class="panel-heading">
                 <strong>{{ row.vars.value.medicament.nomcommercial }}</strong>
             </div>
-            <div class="panel-body" id="test">
-                {{ form_row(row) }}
+                
+            <div class="ui-widget">
+                <div class="panel-body" id="test">
+                    {{ form_row(row) }}
+                </div>
             </div>
         </div>
     {% else %}
@@ -23,44 +25,31 @@
 
 {{ form_end(form) }}
 
-<script>
-    
-        $( document ).ready(function() {
-            $('#rapport_offrirs_0_medicament').select2({
-            ajax: {
-                url: "/MedicamentAPI",
-                dataType: 'json',
-                data: function (params) {
-                    return {
-                      page: params.nomcommercial
-                    };
-                },
-                processResults: function (data, params) {
-                  return {
-                    results: data
-                  };
-                },
-                cache: true
-              },
-              placeholder: 'Search for a repository',
-              escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
-              minimumInputLength: 1,
-              templateResult: formatRepo,
-              templateSelection: formatRepoSelection
+
+
+
+
+
+
+
+{#<div class="js-medicament" data-listemedicaments="{{ lesMedicaments|join(',') }}"> 
+    <script>
+        $('document').ready(function() {
+
+            $( "#ajouterEchantillon" ).click(function() {
+
+                var lesmedicaments = $('.js-medicament').data('listemedicaments');
+
+                var lesmedicaments = lesmedicaments.split(",");
+
+                console.log(lesmedicaments);
+                
+                $( ".autocomplete" ).autocomplete({
+                    source: lesmedicaments
+                });
             });
-
-            function formatRepo (repo) {
-          
-              var markup = "<div class='select2-result-repository clearfix'><div class='select2-result-repository__title'>" + repo.nomcommercial + "</div></div>";
-            
-              return markup;
-            }
-
-            function formatRepoSelection (repo) {
-              return repo.nomcommercial;
-            }
         });
-        
-       
-</script>
+    </script>
+</div>#}
+{# render each row and field in the embedded form, in this example it's rendering the experience (Exp) fiels as rows #}
 

@@ -14,16 +14,15 @@ class MedicamentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Medicament::class);
     }
-    public function findLike($titre)
+    public function findByName($titre)
     {
         return $this
             ->createQueryBuilder('a')
             ->where('a.nomcommercial LIKE :titre')
             ->setParameter( 'titre', "%$titre%")
-            ->orderBy('a.titre')
-            ->setMaxResults(10)
+            ->orderBy('a.nomcommercial')
             ->getQuery()
-            ->execute()
+            ->getResult()
             ;
     }
 }
