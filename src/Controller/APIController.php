@@ -22,12 +22,11 @@ class APIController extends AbstractController
      */
     public function MedecinAPI(Request $request): Response
     {
-
-        $user = $this->getUser();
+        header("Access-Control-Allow-Origin: *");
 
         $rapports = $this->getDoctrine()
                 ->getRepository(Rapport::class)
-                ->findBy(['idvisiteur' => $user->getId()]);
+                ->findAll();
         
         /* @var $rapports Rapport[] */
         
