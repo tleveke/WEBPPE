@@ -1,0 +1,4 @@
+parameters:
+        onurb_yuml.scale: normal
+        onurb_yuml.direction: LR
+        onurb_yuml.style: boring 

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Onurb\Doctrine\ORMMetadataGrapher\Mapping as Grapher;
 
 /**
 * @ORM\Entity
@@ -68,12 +69,17 @@ class Offrir
         return $this;
     }
     
-    
+    /**
+    * @Grapher\IsDisplayedMethod()
+    */
     public function getQuantite(): ?int
     {
         return $this->quantite;
     }
 
+    /**
+    * @Grapher\IsDisplayedMethod()
+    */
     public function setQuantite(int $quantite): self
     {
         $this->quantite = $quantite;

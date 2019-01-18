@@ -5,12 +5,14 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\Serializable;
+use Onurb\Doctrine\ORMMetadataGrapher\Mapping as Grapher;
 
 /**
  * Visiteur
  *
  * @ORM\Table(name="visiteur")
  * @ORM\Entity
+ * @Grapher\ShowAttributesProperties()
  */
 class Visiteur implements UserInterface, \Serializable
 {
@@ -95,11 +97,17 @@ class Visiteur implements UserInterface, \Serializable
         return $this->id;
     }
 
+    /**
+    * @Grapher\IsDisplayedMethod()
+    */
     public function getNom(): ?string
     {
         return $this->nom;
     }
 
+    /**
+    * @Grapher\IsDisplayedMethod()
+    */
     public function setNom(?string $nom): self
     {
         $this->nom = $nom;
@@ -223,7 +231,6 @@ class Visiteur implements UserInterface, \Serializable
     {
     }
 
-    /** @see\Serializable::serialize() */
     public function serialize()
     {
         return serialize(array(
@@ -232,8 +239,6 @@ class Visiteur implements UserInterface, \Serializable
             $this->password,
         ));
     }
-
-    /** @see\Serializable::unserialize() */
 
     public function unserialize($serialized)
     {

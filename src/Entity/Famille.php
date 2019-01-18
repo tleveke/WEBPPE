@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Onurb\Doctrine\ORMMetadataGrapher\Mapping as Grapher;
 
 /**
  * Famille
@@ -43,11 +44,17 @@ class Famille
         return $this->id;
     }
 
+    /**
+    * @Grapher\IsDisplayedMethod()
+    */
     public function getLibelle(): ?string
     {
         return $this->libelle;
     }
 
+    /**
+    * @Grapher\IsDisplayedMethod()
+    */
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;

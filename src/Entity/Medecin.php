@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Onurb\Doctrine\ORMMetadataGrapher\Mapping as Grapher;
 
 /**
  * Medecin
@@ -96,11 +97,17 @@ class Medecin
         return $this->id;
     }
 
+    /**
+    * @Grapher\IsDisplayedMethod()
+    */
     public function getNom(): ?string
     {
         return $this->nom;
     }
 
+    /**
+    * @Grapher\IsDisplayedMethod()
+    */
     public function setNom(string $nom): self
     {
         $this->nom = $nom;

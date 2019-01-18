@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Onurb\Doctrine\ORMMetadataGrapher\Mapping as Grapher;
 
 /**
  * Medicament
@@ -82,11 +83,17 @@ class Medicament
         return $this->id;
     }
 
+    /**
+    * @Grapher\IsDisplayedMethod()
+    */
     public function getNomcommercial(): ?string
     {
         return $this->nomcommercial;
     }
 
+    /**
+    * @Grapher\IsDisplayedMethod()
+    */
     public function setNomcommercial(string $nomcommercial): self
     {
         $this->nomcommercial = $nomcommercial;

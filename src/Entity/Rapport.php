@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Onurb\Doctrine\ORMMetadataGrapher\Mapping as Grapher;
 
 /**
  * Rapport
@@ -84,11 +85,17 @@ class Rapport
         return $this->id;
     }
 
+    /**
+    * @Grapher\IsDisplayedMethod()
+    */
     public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
+    /**
+    * @Grapher\IsDisplayedMethod()
+    */
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
