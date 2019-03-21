@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Rapport;
 use App\Entity\Medecin;
 use App\Entity\Medicament;
+use App\Entity\Famille;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -69,6 +70,40 @@ class APIController extends AbstractController
             $lesmedicaments[] = [ 
                 'id' => $medicament->getId(),
                 'nomcommercial' => $medicament->getNomcommercial(),
+            ];
+        }
+        
+
+        return new JsonResponse($lesmedicaments);
+    }
+
+    /**
+     * @Route("/MedicamentAllAPI", name="medicament_api", methods="GET|POST")
+     */
+    public function MedicamentALLAPI(Request $request): Response
+    {
+
+        $medicaments = $this->getDoctrine()
+                ->getRepository(Medicament::class)
+                ->findAll();
+        
+        /* @var $rapports Rapport[] */
+        
+        $lesmedicaments = [];
+        foreach ($medicaments as $medicament) {
+
+            $famille = $this->getDoctrine()
+                ->getRepository(Famille::class)
+                ->find($medicament->getIdfamille());
+
+            $lesmedicaments[] = [ 
+                'id' => $medicament->getId(),
+                'nomcommercial' => $medicament->getNomcommercial(),
+                'nomfamille' => $famille->getLibelle(),
+                'composition' => $medicament->getComposition(),
+                'effets' => $medicament->getEffets(),
+                'contreIndications' => $medicament->getContreindications(),
+
             ];
         }
         
