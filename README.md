@@ -1,2 +1,2 @@
 # WEBPPE
-### progé realiser par tom,Givranuke,alex
+### projet réalisé par Mathéo Dupont, Alex Metay et Tom Leveque
